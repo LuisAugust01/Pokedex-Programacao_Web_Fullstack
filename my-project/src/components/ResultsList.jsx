@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SearchContext } from "../contexts/SearchContext";
 import ResultCard from "./ResultCard";
+import PokemonModal from "./PokemonModal";
 
 export default function ResultsList() {
   const { state, dispatch } = useContext(SearchContext);
   const { query, filterType, page, pokemons, loading, error } = state;
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   const limit = 20;
   const offset = (page - 1) * limit;
@@ -64,8 +66,17 @@ export default function ResultsList() {
   return (
     <div className="results-list">
       {pokemons.map((p) => (
-        <ResultCard key={p.id} pokemon={p} />
+        <div key={p.id} onClick={() => setSelectedPokemon(p)}>
+          <ResultCard pokemon={p} />
+        </div>
       ))}
+
+      {selectedPokemon && (
+        <PokemonModal
+          pokemon={selectedPokemon}
+          onClose={() => setSelectedPokemon(null)}
+        />
+      )}
     </div>
   );
 }
