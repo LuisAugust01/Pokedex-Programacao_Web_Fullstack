@@ -59,3 +59,7 @@ npm run build
 5. Servir o build localmente
 npm install -g serve
 serve -s dist
+
+## 🌐 - Github Pages
+- devido a complicações, o link foi criado pelo Vercel.
+- Link: https://pokedex-programacao-web-fullstack-y.vercel.app/
