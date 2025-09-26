@@ -3,7 +3,6 @@ import { SearchProvider } from "./contexts/SearchContext";
 import SearchForm from "./components/SearchForm";
 import ResultsList from "./components/ResultsList";
 import FilterType from "./components/FilterType";
-import Pagination from "./components/Pagination";
 import "./styles.css";
 
 export default function App() {
@@ -14,7 +13,6 @@ export default function App() {
         <SearchForm />
         <FilterType />
         <ResultsList />
-        <Pagination />
       </div>
     </SearchProvider>
   );

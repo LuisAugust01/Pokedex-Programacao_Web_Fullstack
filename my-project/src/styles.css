@@ -1,0 +1,9 @@
+.filter-type {
+  margin: 10px 0;
+}
+
+.filter-type select {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
