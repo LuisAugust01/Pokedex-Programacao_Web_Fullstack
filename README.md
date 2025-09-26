@@ -4,7 +4,7 @@ O objetivo é consumir dados da PokéAPI e apresentar uma Pokédex interativa co
 
 ---
 
- Tecnologias Utilizadas,
+## ⚙️ Tecnologias Utilizadas
 React.js + Vite,
 React Hook Form + Yup (validação),
 Context API + useReducer (gerenciamento de estado global),
@@ -12,7 +12,7 @@ PokéAPI (API pública utilizada),
 
 ---
 
- Estrutura do Projeto
+## 🏗️ Estrutura do Projeto
  ```
 src/
 ├── components/ # Componentes React (UI)
