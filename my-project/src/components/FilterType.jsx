@@ -11,7 +11,7 @@ export default function FilterType() {
         const res = await fetch("https://pokeapi.co/api/v2/type");
         if (!res.ok) throw new Error("Erro ao buscar tipos!");
         const data = await res.json();
-        setTypes(data.results); // lista de tipos disponíveis
+        setTypes(data.results);
       } catch (err) {
         console.error("Erro ao carregar tipos:", err);
       }
@@ -21,8 +21,8 @@ export default function FilterType() {
 
   const handleChange = (e) => {
     dispatch({ type: "SET_TYPE_FILTER", payload: e.target.value });
-    dispatch({ type: "SET_QUERY", payload: "" }); // limpa busca por nome/ID
-    dispatch({ type: "SET_PAGE", payload: 1 });   // reseta para página 1
+    dispatch({ type: "SET_QUERY", payload: "" });
+    dispatch({ type: "SET_PAGE", payload: 1 });
   };
 
   return (
