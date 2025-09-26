@@ -1,16 +1,20 @@
-import React from 'react';
-import { SearchProvider } from './contexts/SearchContext';
-import SearchForm from './components/SearchForm';
-import ResultsList from './components/ResultsList';
+import React from "react";
+import { SearchProvider } from "./contexts/SearchContext";
+import SearchForm from "./components/SearchForm";
+import ResultsList from "./components/ResultsList";
+import FilterType from "./components/FilterType";
+import Pagination from "./components/Pagination";
+import "./styles.css";
 
 export default function App() {
   return (
     <SearchProvider>
-      <div style={{ maxWidth: 900, margin: '16px auto', padding: 16 }}>
-        <h1>Projeto SPA - Exemplo</h1>
+      <div className="app-container">
+        <h1>Pokédex</h1>
         <SearchForm />
-        <hr />
+        <FilterType />
         <ResultsList />
+        <Pagination />
       </div>
     </SearchProvider>
   );
