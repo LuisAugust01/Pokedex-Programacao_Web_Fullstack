@@ -1,65 +1,65 @@
-# Pokédex - Projeto Programação Web Fullstack
-Este projeto é uma SPA (Single Page Application) desenvolvida em React.js utilizando Vite.
-O objetivo é consumir dados da PokéAPI e apresentar uma Pokédex interativa com busca, filtros e paginação.
+# Projeto 2 – Pokédex (Fullstack)
 
----
+Aplicação web em 3 camadas: Front-end (React SPA), Back-end HTTP (Express.js REST) e Banco de Dados (SQLite). Implementa Login, Busca e Inserção com requisitos de segurança, cache e compressão.
 
-## ⚙️ Tecnologias Utilizadas
-React.js + Vite,
-React Hook Form + Yup (validação),
-Context API + useReducer (gerenciamento de estado global),
-PokéAPI (API pública utilizada),
-
----
-
-## 🏗️ Estrutura do Projeto
- ```
-src/
-├── components/ # Componentes React (UI)
-│   ├── SearchForm.jsx
-│   ├── ResultsList.jsx
-│   ├── ResultCard.jsx
-│   ├── FilterType.jsx
-│   ├── Pagination.jsx
-│   └── PokemonModal.jsx
-├── contexts/ # Context API + useReducer
-│   └── SearchContext.jsx
-├── App.jsx # Composição da aplicação
-├── main.jsx # Entrada principal do React
-└── styles.css # Estilos globais
+## Estrutura do Repositório
 ```
-## ⚡ Funcionalidades
-- 🔍 **Buscar Pokémon** por nome ou ID  
-- 🎭 **Filtrar por tipo** (ex: fogo, água, planta)  
-- 📑 **Paginação** para navegar entre páginas de resultados  
-- 📝 **Validação de formulário** com mensagens de erro  
-- 🖼️ **Modal de detalhes** ao clicar em um Pokémon  
-- 🌐 SPA com carregamento dinâmico de dados  
+Pokedex-Programacao_Web_Fullstack/
+├─ backend/
+│  ├─ src/
+│  │  ├─ config/       # db, etc.
+│  │  ├─ models/       # acesso ao banco
+│  │  └─ routes/       # rotas + controladores
+│  └─ package.json
+└─ frontend/           # Front-end (estrutura do Projeto 1 preservada)
+	├─ src/
+	└─ package.json
+```
 
----
+## Requisitos implementados
+- Login com JWT (apenas logado acessa busca e inserção)
+- Busca de Pokémons via backend (proxy para PokéAPI com cache)
+- Inserção de Pokémons (armazenamento local no banco)
+- Validações no servidor (express-validator) e no cliente (Yup)
+- Segurança: Helmet, rate limit, hashing de senha (bcrypt), invalidação simples de token, logs de autenticação/busca/post
+- Otimizações: compressão de respostas (compression), cache no backend (NodeCache)
 
-## 🛠️ Como rodar o projeto
+## Como rodar (Windows PowerShell)
 
-### 1. Clonar o repositório
-"```bash"
-git clone https://github.com/SEU_USUARIO/pokedex.git
-cd pokedex
-
-2. Instalar dependências
+1) Backend
+```powershell
+cd "c:\Users\USER\Documents\GitHub\Pokedex-Programacao_Web_Fullstack\backend"
 npm install
+$env:JWT_SECRET = "devsecret"; $env:PORT = "3001"; npm run dev
+```
+Opcional (semente inicial de usuários):
+```powershell
+Invoke-RestMethod -Method Post -Uri http://localhost:3001/api/seed-users
+```
 
-3. Rodar em modo desenvolvimento
+2) Frontend
+```powershell
+cd "c:\Users\USER\Documents\GitHub\Pokedex-Programacao_Web_Fullstack\frontend"
+npm install
+"VITE_API_BASE_URL=http://localhost:3001/api" | Out-File -FilePath .env.local -Encoding utf8
 npm run dev
+```
+Acesse: `http://localhost:5173` e faça login (ex.: `ash/pikachu`).
 
-Acesse: http://localhost:5173
+## Endpoints principais (REST)
+- `POST /api/login` → autenticação (retorna token)
+- `POST /api/logout` → invalida token atual
+- `GET /api/pokemons?query=&type=&page=` → busca (autenticado)
+- `GET /api/types` → tipos (autenticado)
+- `POST /api/pokemons` → inserir Pokémon (autenticado)
+- `GET /api/pokemons/local` → itens inseridos localmente (autenticado)
 
-4. Gerar build de produção
-npm run build
+## Notas de segurança
+- HTTPS opcional via variáveis `HTTPS=true`, `SSL_KEY`, `SSL_CERT` (ambiente local)
+- Rate limit básico habilitado
+- Sanitização/validação de parâmetros no servidor
+- Hash de senhas no banco (bcrypt)
+- Logs em `backend/logs/`
 
-5. Servir o build localmente
-npm install -g serve
-serve -s dist
-
-## 🌐 - Github Pages
-- devido a complicações, o link foi criado pelo Vercel.
-- Link: https://pokedex-programacao-web-fullstack-y.vercel.app/
+## Vídeo (até 3 minutos)
+Sugestão de roteiro: estrutura do repositório, instalação/execução via linha de comando, login, busca, inserção, logs e cache (mostrar `backend/logs`).
