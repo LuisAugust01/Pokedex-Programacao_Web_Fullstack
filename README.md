@@ -60,6 +60,3 @@ Acesse: `http://localhost:5173` e faça login (ex.: `ash/pikachu`).
 - Sanitização/validação de parâmetros no servidor
 - Hash de senhas no banco (bcrypt)
 - Logs em `backend/logs/`
-
-## Vídeo (até 3 minutos)
-Sugestão de roteiro: estrutura do repositório, instalação/execução via linha de comando, login, busca, inserção, logs e cache (mostrar `backend/logs`).
