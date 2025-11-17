@@ -38,7 +38,10 @@ export default function ResultsList() {
   return (
     <div className="results-list">
       {pokemons.map((p) => (
-        <div key={p.id} onClick={() => setSelectedPokemon(p)}>
+        <div
+          key={`${p.source || 'remote'}-${p.id ?? p.name}`}
+          onClick={() => setSelectedPokemon(p)}
+        >
           <ResultCard pokemon={p} />
         </div>
       ))}

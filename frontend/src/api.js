@@ -10,7 +10,10 @@ export async function apiFetch(path, { method = 'GET', token, body } = {}) {
   });
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
-    const message = data.error || data.message || 'Erro na requisição';
+    let message = data.error || data.message || 'Erro na requisição';
+    if (!message && data.errors && Array.isArray(data.errors)) {
+      message = data.errors.map((e) => e.msg || e.message || JSON.stringify(e)).join('; ');
+    }
     throw new Error(message);
   }
   return res.json();
